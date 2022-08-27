@@ -3,6 +3,11 @@ import {
   createNote,
   getAllNotes,
   getNote,
+  deleteNote,
+  updateNote,
+  addTask,
+  updateTask,
+  deleteTask,
 } from "../controllers/noteControllers";
 
 const router = express.Router();
@@ -17,13 +22,18 @@ router.get("/:id", getNote);
 router.post("/", createNote);
 
 // DELETE a note
-router.delete("/:id", (req: any, res: any) => {
-  res.json({ mssg: "DELETE a note" });
-});
+router.delete("/:id", deleteNote);
 
 // UPDATE a note
-router.patch("/:id", (req: any, res: any) => {
-  res.json({ mssg: "UPDATE a note" });
-});
+router.patch("/:id", updateNote);
+
+// POST a new task to a note
+router.post("/tasks/:id", addTask);
+
+//UPDATE a task of a note
+router.patch("/tasks/:taskId", updateTask);
+
+//DELETE a task of a note
+router.delete("/tasks/:taskId", deleteTask);
 
 module.exports = router;
