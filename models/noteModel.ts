@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schemma = mongoose.Schema;
 
 type Tasks = {
+  _id?: string;
   titleTask: string;
   descriptionTask: string;
 };

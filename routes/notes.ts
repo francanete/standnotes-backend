@@ -8,6 +8,7 @@ import {
   addTask,
   updateTask,
   deleteTask,
+  getTask,
 } from "../controllers/noteControllers";
 
 const router = express.Router();
@@ -35,5 +36,8 @@ router.patch("/tasks/:taskId", updateTask);
 
 //DELETE a task of a note
 router.delete("/tasks/:taskId", deleteTask);
+
+//GET a single task of a note
+router.get("/tasks/:taskId", getTask);
 
 module.exports = router;

@@ -133,6 +133,34 @@ export const addTask = async (req: IUpdateNoteRequest, res: Response) => {
   res.status(200).json(note);
 };
 
+// GET a single task of a note
+interface IGetTaskRequest {
+  params: {
+    taskId: string;
+  };
+  body: INotesSchema;
+}
+
+export const getTask = async (req: IGetTaskRequest, res: Response) => {
+  const { taskId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(taskId)) {
+    return res.status(404).json({ error: "No such TASK exists" });
+  }
+
+  const tasks = req.body.tasks;
+
+  const getTask = await Note.find({ "tasks._id": taskId }).select({
+    "tasks.$": 1,
+  });
+
+  if (!getTask) {
+    return res.status(404).json({ error: "No such TASK exists" });
+  }
+
+  res.status(200).json(...getTask[0].tasks);
+};
+
 // UPDATE a task in a note
 
 interface IUpdateTask {
@@ -208,4 +236,5 @@ module.exports = {
   addTask,
   updateTask,
   deleteTask,
+  getTask,
 };
