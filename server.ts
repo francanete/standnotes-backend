@@ -6,6 +6,7 @@ const cors = require("cors");
 import { Error } from "mongoose";
 const mongoose = require("mongoose");
 const notesRoutes = require("./routes/notes");
+const userRoutes = require("./routes/user");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/notes", notesRoutes);
+app.use("/api/user", userRoutes);
 
 // Connect to MongoDB
 mongoose
