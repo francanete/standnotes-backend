@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt");
 import { Document, Schema } from "mongoose";
 import validator from "validator";
 
-interface IUser extends Document {
+export interface IUser extends Document {
   email: string;
   password: string;
+  // _id: string;
 }
 
 const UserSchema: Schema = new Schema({

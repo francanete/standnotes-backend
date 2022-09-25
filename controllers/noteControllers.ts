@@ -1,16 +1,20 @@
 import { Response } from "express";
 import mongoose from "mongoose";
 import { INotesSchema } from "../models/noteModel";
+import { IUser } from "../models/userModel";
 
 const Note = require("../models/noteModel");
 
 // GET all notes
 interface INoteRequest {
+  user: IUser;
   body: INotesSchema;
 }
 
 export const getAllNotes = async (req: INoteRequest, res: Response) => {
-  const notes = await Note.find({}).sort({ date: -1 });
+  const userId = req.user._id;
+
+  const notes = await Note.find({ userId }).sort({ date: -1 });
   res.status(200).json(notes);
 };
 
@@ -44,11 +48,13 @@ export const createNote = async (req: INoteRequest, res: Response) => {
   const { title, date, description, tasks } = req.body;
 
   try {
+    const userId = req.user._id;
     const note = await Note.create({
       title,
       date,
       description,
       tasks,
+      userId,
     });
 
     res.status(200).json(note);

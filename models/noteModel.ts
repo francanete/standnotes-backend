@@ -13,6 +13,7 @@ export interface INotesSchema {
   date: Date;
   description: number;
   tasks: Tasks[];
+  userId: string;
 }
 
 const noteSchema: INotesSchema = new Schemma(
@@ -26,6 +27,7 @@ const noteSchema: INotesSchema = new Schemma(
         descriptionTask: { type: String, required: false },
       },
     ],
+    userId: { type: String, required: true },
   },
   { timestamps: true }
 );
