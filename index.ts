@@ -46,3 +46,5 @@ mongoose
     });
   })
   .catch((error: Error) => console.log(error));
+
+module.exports = app;
