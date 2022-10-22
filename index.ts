@@ -28,7 +28,7 @@ const corsOptions = {
 
 // Middleware
 
-app.use(express.json(), cors({ origin: "https://standnotes-dev.vercel.app" }));
+app.use(express.json(), cors({ origin: "*" }));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
