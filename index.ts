@@ -10,7 +10,11 @@ const userRoutes = require("./routes/user");
 
 const app = express();
 
-const whitelist = ["http://localhost:3000"];
+const whitelist = [
+  "http://localhost:3000",
+  "https://standnotes.com",
+  "https://standnotes-dev.vercel.app",
+];
 const corsOptions = {
   origin: function (origin: any, callback: any) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
